@@ -1,1 +1,9 @@
 = kencancode-builder
+
+[source]
+----
+# start VM
+terraform apply -var="vm-state=RUNNING"
+# stop VM
+terraform apply -var="vm-state=TERMINATED"
+----
