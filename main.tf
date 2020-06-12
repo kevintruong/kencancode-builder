@@ -16,6 +16,8 @@ resource "google_compute_instance" "default" {
   machine_type = var.machine-type
   zone = var.zone
   allow_stopping_for_update = true
+  desired_status = var.vm-state
+//  desired_status = "RUNNING"
 
   boot_disk {
     initialize_params {
