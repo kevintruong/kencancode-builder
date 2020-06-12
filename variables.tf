@@ -14,6 +14,11 @@ variable "machine-type" {
 variable meta_startup_script {
   default = "sudo apt-get update; sudo apt-get install -yq build-essential python-pip rsync"
 }
+
+variable ssh-user {
+  default = "ken"
+}
+
 variable vm-state {
   default = "RUNNING"
 }

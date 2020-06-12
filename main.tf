@@ -30,8 +30,7 @@ resource "google_compute_instance" "default" {
   }
 
 
-  // Make sure flask is installed on all new instances for later steps
-  metadata_startup_script = var.meta_startup_script
+//  metadata_startup_script = var.meta_startup_script
 
   network_interface {
     network = "default"
@@ -42,7 +41,7 @@ resource "google_compute_instance" "default" {
   }
 
   metadata = {
-    ssh-keys = "INSERT_USERNAME:${file("~/.ssh/id_rsa.pub")}"
+    ssh-keys = "${var.ssh-user}:${file("~/.ssh/id_rsa.pub")}"
   }
 
 }
