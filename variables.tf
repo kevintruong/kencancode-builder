@@ -1,3 +1,10 @@
+variable "instance-name" {
+  default = "kencancode-builder"
+}
+variable "project" {
+  default = "kencancode-builder"
+}
+
 variable "region" {
   default = "asia-east1"
 }
@@ -8,7 +15,11 @@ variable "zone" {
 
 
 variable "machine-type" {
-  default = "n1-highcpu-16"
+  default = "n1-highcpu-2"
+}
+
+variable "image" {
+  default = "debian-cloud/debian-9"
 }
 
 variable meta_startup_script {
@@ -22,4 +33,5 @@ variable ssh-user {
 variable vm-state {
   default = "RUNNING"
 }
+
 

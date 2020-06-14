@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: true
+
+  vars:
+    jenkins_hostname: 35.201.133.196
+    jenkins_java_options: "-Djava.net.preferIPv4Stack=true"
+    java_packages:
+      - openjdk-8-jdk
+  roles:
+    - role: geerlingguy.java
+    - role: geerlingguy.jenkins

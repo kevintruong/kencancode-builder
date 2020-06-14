@@ -1,27 +1,54 @@
 // Configure the Google Cloud provider
+
 provider "google" {
   credentials = file("kencancode-builder.json")
-  project = "kencancode-builder"
+  project = var.project
   region = var.region
 }
 
-// Terraform plugin for creating random ids
-resource "random_id" "instance_id" {
-  byte_length = 8
+resource "google_compute_network" "default" {
+  name = "ken-network"
 }
 
+resource "google_compute_firewall" "default" {
+  name = "kencancode-firewalls"
+  network = google_compute_network.default.name
+
+  allow {
+    protocol = "icmp"
+  }
+
+  allow {
+    protocol = "tcp"
+    ports = [
+      "80",
+      "8080",
+      "1000-2000",
+      "22"]
+  }
+  source_ranges = [
+    "0.0.0.0/0"]
+
+  source_tags = [
+    "jenkins"]
+}
+
+
 // A single Google Cloud Engine instance
-resource "google_compute_instance" "default" {
-  name = "kencancode-builder-${random_id.instance_id.hex}"
+
+resource "google_compute_instance" "kencancode" {
+  name = var.instance-name
   machine_type = var.machine-type
   zone = var.zone
   allow_stopping_for_update = true
   desired_status = var.vm-state
-//  desired_status = "RUNNING"
+  tags = [
+    "jenkins"]
+  //  desired_status = "RUNNING"
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-9"
+      image = var.image
     }
   }
   scheduling {
@@ -30,10 +57,10 @@ resource "google_compute_instance" "default" {
   }
 
 
-//  metadata_startup_script = var.meta_startup_script
+  metadata_startup_script = var.meta_startup_script
 
   network_interface {
-    network = "default"
+    network = google_compute_network.default.name
 
     access_config {
       // Include this section to give the VM an external ip address
@@ -47,5 +74,5 @@ resource "google_compute_instance" "default" {
 }
 
 output "ip" {
-  value = google_compute_instance.default.network_interface.0.access_config.0.nat_ip
+  value = google_compute_instance.kencancode.network_interface.0.access_config.0.nat_ip
 }
