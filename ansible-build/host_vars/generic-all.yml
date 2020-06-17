@@ -1,0 +1,218 @@
+---
+
+###
+### Custom variables
+###
+debian_dist: buster
+
+
+
+###
+### Debian apt repositories
+###
+apt_repo_repositories:
+  # main
+  - file: debian-main
+    repo: "deb http://deb.debian.org/debian {{ debian_dist }} main contrib non-free"
+  - file: debian-main
+    repo: "deb-src http://deb.debian.org/debian {{ debian_dist }} main contrib non-free"
+  # updates
+  - file: debian-updates
+    repo: "deb http://deb.debian.org/debian {{ debian_dist }}-updates main contrib non-free"
+  - file: debian-updates
+    repo: "deb-src http://deb.debian.org/debian {{ debian_dist }}-updates main contrib non-free"
+  # security
+  - file: debian-security
+    repo: "deb http://security.debian.org {{ debian_dist }}/updates main contrib non-free"
+  - file: debian-security
+    repo: "deb-src http://security.debian.org {{ debian_dist }}/updates main contrib non-free"
+
+
+###
+### Systemd services
+###
+systemd_enabled: []
+
+systemd_disabled: []
+
+
+###
+### System Python versions
+###
+python_2: True
+python_3: True
+
+
+###
+### Python pip packages (add your custom packages here)
+###
+pip2_packages: []
+pip3_packages: []
+
+
+###
+### Debian packages (add your custom packages here)
+###
+apt_packages: []
+
+
+###
+### Select packages to install
+###
+### 'install': Install the package
+### 'remove':  Uninstall the package
+### Any other value will ignore the package (neither install nor uninstall)
+
+autorunner:            'install'
+chromium:              'install'
+clipmenu:              'install'
+dbeaver:               'install'
+diff_highlight:        'install'
+docker:                'install'
+docker_compose:        'install'
+ffscreencast:          'install'
+firefox:               'install'
+font_font_awesome:     'install'
+font_droid_sans_mono:  'install'
+font_san_francisco:    'install'
+font_terminus:         'install'
+font_ubuntu:           'install'
+fzf:                   'install'
+gimp:                  'install'
+i3:                    'noop'
+i3_gaps:               'install'
+i3_utils_bin:          'install'
+i3_utils_systemd:      'install'
+i3blocks_modules:      'install'
+icon_moka:             'install'
+kops:                  'install'
+kubectl:               'install'
+libreoffice:           'install'
+lxdm:                  'install'
+neovim:                'install'
+network_manager:       'install'
+oh_my_zsh:             'install'
+packer:                'install'
+pinta:                 'install'
+ranger:                'install'
+skype:                 'install'
+sublime:               'install'
+sxiv:                  'install'
+telegram:              'install'
+terraform:             'install'
+theme_arc:             'install'
+thunar:                'install'
+thunar_custom_actions: 'install'
+thunderbird:           'install'
+timemachine:           'install'
+urxvt:                 'install'
+virtualbox:            'install'
+xbacklight:            'install'
+xorg:                  'install'
+zathura:               'install'
+
+
+###
+### Settings for packages
+###
+
+# ---- Chromium ----
+# Only works for extensions from web store
+chromium_extensions: []
+# - dbepggeogbaibhgnhhndojpepiihcmeb
+# - pgdnlhfefecpicbbihgmbmffkjpaplco
+
+# ---- Docker ----
+# 'wheezy', 'jessie', 'stretch' or 'buster'
+docker_repo_dist: "{{ debian_dist }}"
+# 'stable' or 'edge'
+docker_repo_channel: edge
+
+# ---- FZF ----
+# Add sourcing ~/.fzf.bash to your normal shell config?
+fzf_update_rc: True
+# Enable/Disable fuzzy completion (bash & zsh)?
+fzf_completion: False
+# Enable/disable key bindings (CTRL-T, CTRL-R, ALT-C)?
+fzf_key_bindings: False
+
+# ---- LXDM ----
+lxdm_dpi: 96
+lxdm_gtk_theme: Industrial
+lxdm_show_user_list: False
+
+# ---- NetworkManager ----
+network_manager_nm_applet: True
+network_manager_plugin_openvpn: True
+network_manager_plugin_l2tp: True
+network_manager_plugin_openconnect: True
+network_manager_plugin_pptp: True
+network_manager_plugin_ssh: True
+network_manager_plugin_strongswan: True
+network_manager_plugin_vpnc: True
+
+# ---- Skype ----
+# 'stable' or 'unstable'
+skype_repo_channel: stable
+
+# ---- Sublime ----
+# 'stable' or 'dev'
+sublime_repo_channel: stable
+
+# ---- sxiv ----
+# Make sxiv default program for pictures
+sxiv_default_image_viewer: True
+
+# ---- Thunar ----
+thunar_volman_enable: True
+thunar_archive_plugin_enable: True
+
+# ---- Thunderbird ----
+thunderbird_ext_official: []
+#  - https://addons.mozilla.org/en-US/thunderbird/addon/dkim-verifier/
+#  - https://addons.mozilla.org/en-US/thunderbird/addon/enigmail/
+#  - https://addons.mozilla.org/en-US/thunderbird/addon/gnotifier/
+#  - https://addons.mozilla.org/en-US/thunderbird/addon/lightning/
+#  - https://addons.mozilla.org/en-US/thunderbird/addon/provider-for-google-calendar/
+#  - https://addons.mozilla.org/en-US/thunderbird/addon/x-unsent-support/
+
+# List of urls pages in which an XPI download link can be found.
+# Note: The first found XPI download url will be used
+thunderbird_ext_custom: []
+#  - https://github.com/ExchangeCalendar/exchangecalendar/releases
+
+# ---- Xorg ----
+# Supported values: 'amdgpu' 'ati' 'intel' 'modesetting' 'nouveau' 'nvidia' 'radeon'
+xorg_gpu: modesetting
+# Supported values: 'XAA' 'EXA' 'UXA' 'SNA' 'glamor'
+xorg_gpu_accel_method: glamor
+# Enable VDPAU_DRIVER=va_gl systemwide
+xorg_gpu_vdpau_va_gl_enable: True
+# 'libinput' or 'synaptics'
+xorg_touchpad_enable: True
+xorg_touchpad_driver: 'synaptics'
+
+
+###
+### Set your preferred default applications
+###
+xdg_mime_defaults:
+  - desktop_file: Thunar.desktop
+    mime_types:
+      - inode/directory
+  - desktop_file: chromium.desktop
+    mime_types:
+      - text/html
+      - text/xml
+      - application/xhtml_xml
+      - application/x-mimearchive
+      - x-scheme-handler/http
+      - x-scheme-handler/https
+  - desktop_file: zathura.desktop
+    mime_types:
+      - application/pdf
+      - application/postscript
+      - application/eps
+      - application/x-eps
+      - image/eps
+      - image/x-eps

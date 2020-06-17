@@ -1,0 +1,39 @@
+sudo: required
+
+language: python
+
+services:
+  - docker
+
+env:
+  matrix:
+    ###
+    ### Generic profile
+    ###
+    # All roles (playbook order)
+    - random=0 dist=generic-all
+    # All roles (random order)
+    - random=1 dist=generic-all
+
+    ###
+    ### Cytopia's profile
+    ###
+    # All roles (playbook order)
+    - random=0 dist=cytopia-t470p
+    # All roles (random order)
+    - random=1 dist=cytopia-t470p
+
+
+before_script:
+  # Run it multiple times until it succeeds. This is to prevent errors that occur due to
+  # network timeouts between travis-ci
+  - max=100; i=0; while [ $i -lt $max ]; do if docker build -t ansible-debian .; then break; else i=$((i+1)); fi done
+
+script:
+  # 1. Run it multiple times until it succeeds. This is to prevent errors that occur due to network timeouts between travis-ci
+  # 2. Separate between single runs and full runs
+  - if [ "${random}" -eq "1" ]; then
+        make test-docker-random PROFILE=${dist};
+    else
+        make test-docker-full PROFILE=${dist};
+    fi

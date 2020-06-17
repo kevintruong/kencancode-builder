@@ -1,0 +1,22 @@
+---
+
+- name: ensure thunar custom actions requirements are installed
+  include_role:
+    name: apt-meta
+  vars:
+    apt_packages: "{{ thunar_custom_actions_shared_packages }}"
+
+- name: ensure thunar custom actions are downloaded
+  get_url:
+    url: "https://raw.githubusercontent.com/cytopia/thunar-custom-actions/master/{{ item }}"
+    dest: "{{ thunar_custom_actions_bin_path }}/{{ item }}"
+    mode: 0755
+    force: True
+    timeout: 30
+  register: task_result
+  until: task_result is succeeded
+  retries: 30
+  delay: 10
+  become: True
+  with_items:
+    - "{{ thunar_custom_actions_tools }}"

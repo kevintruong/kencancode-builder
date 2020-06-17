@@ -1,0 +1,20 @@
+---
+
+- name: ensure ffscreencast requirements are installed
+  include_role:
+    name: apt-meta
+  vars:
+    apt_packages: "{{ ffscreencast_shared_packages }}"
+
+- name: ensure ffscreencast is downloaded
+  get_url:
+    url: https://raw.githubusercontent.com/cytopia/ffscreencast/master/bin/ffscreencast
+    dest: "{{ ffscreencast_bin_path }}/ffscreencast"
+    mode: 0755
+    force: True
+    timeout: 30
+  register: task_result
+  until: task_result is succeeded
+  retries: 30
+  delay: 10
+  become: True

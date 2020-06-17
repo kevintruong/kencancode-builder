@@ -1,0 +1,10 @@
+---
+
+- name: ensure packer is removed
+  file:
+    state: absent
+    path: "{{ item }}"
+  with_items:
+    - "{{ packer_path }}/packer"
+    - "{{ packer_bash_completion_path }}/packer"
+  become: True

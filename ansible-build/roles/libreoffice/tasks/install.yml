@@ -1,0 +1,32 @@
+---
+
+- name: ensure libreoffice is installed
+  include_role:
+    name: apt-meta
+  vars:
+    apt_packages: "{{ [libreoffice_package_name] }}"
+
+
+###
+### Basic config/theming
+###
+- name: ensure office2016 icon pack is copied
+  copy:
+    src: "files/{{ libreoffice_icon_name }}"
+    dest: "{{ libreoffice_icon_path }}/{{ libreoffice_icon_name }}"
+    owner: root
+    group: root
+    mode: 0644
+  become: True
+
+- name: ensure config directory exists
+  file:
+    path: "{{ libreoffice_config_path }}"
+    state: directory
+    mode: 0700
+
+- name: ensure libreoffice base config is copied once
+  copy:
+    src: "files/registrymodifications.xcu"
+    dest: "{{ libreoffice_config_path }}/registrymodifications.xcu"
+    mode: 0600

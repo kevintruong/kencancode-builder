@@ -1,0 +1,8 @@
+---
+
+- name: ensure virtualbox is removed
+  include_role:
+    name: apt-meta
+  vars:
+    apt_state: absent
+    apt_packages: "{{ [virtualbox_package_name] + virtualbox_exclusive_packages }}"

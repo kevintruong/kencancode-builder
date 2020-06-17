@@ -7,11 +7,11 @@ provider "google" {
 }
 
 resource "google_compute_network" "default" {
-  name = "ken-network"
+  name = "test-network"
 }
 
 resource "google_compute_firewall" "default" {
-  name = "kencancode-firewalls"
+  name = "default"
   network = google_compute_network.default.name
 
   allow {
@@ -34,6 +34,13 @@ resource "google_compute_firewall" "default" {
 }
 
 
+resource "google_compute_disk" "builder-data" {
+  name = "data"
+  zone = var.zone
+  size = var.disk_size
+  type = "pd-ssd"
+}
+
 // A single Google Cloud Engine instance
 
 resource "google_compute_instance" "kencancode" {
@@ -51,6 +58,11 @@ resource "google_compute_instance" "kencancode" {
       image = var.image
     }
   }
+
+  attached_disk {
+    source = google_compute_disk.builder-data.self_link
+  }
+
   scheduling {
     preemptible = true
     automatic_restart = false
@@ -60,7 +72,7 @@ resource "google_compute_instance" "kencancode" {
   metadata_startup_script = var.meta_startup_script
 
   network_interface {
-    network = google_compute_network.default.name
+    network = "default"
 
     access_config {
       // Include this section to give the VM an external ip address

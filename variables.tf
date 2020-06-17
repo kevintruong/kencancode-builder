@@ -13,9 +13,12 @@ variable "zone" {
   default = "asia-east1-b"
 }
 
+variable "disk_size" {
+  default = "100"
+}
 
 variable "machine-type" {
-  default = "n1-highcpu-2"
+  default = "n1-highcpu-8"
 }
 
 variable "image" {
@@ -27,7 +30,7 @@ variable meta_startup_script {
 }
 
 variable ssh-user {
-  default = "ken"
+  default = "kevin"
 }
 
 variable vm-state {

@@ -1,0 +1,37 @@
+---
+
+- name: ensure either python2 or python3 is enabled
+  assert:
+    that:
+      - python_2 or python_3
+    msg: either python2 or python3 must be enabled (or both)
+
+- name: ensure python2 packages are installed
+  include_role:
+    name: apt-meta
+  vars:
+    apt_packages: "{{ python_2_required_apt_packages + python2_apt_packages }}"
+  when: python_2
+
+- name: ensure python3 packages are installed
+  include_role:
+    name: apt-meta
+  vars:
+    apt_packages: "{{ python_3_required_apt_packages + python3_apt_packages }}"
+  when: python_3
+
+- name: ensure python2 pip packages are installed
+  pip:
+    state: latest
+    name: "{{ python_2_required_pip_packages + pip2_packages }}"
+    executable: pip2
+  become: True
+  when: python_2
+
+- name: ensure python3 pip packages are installed
+  pip:
+    state: latest
+    name: "{{ python_3_required_pip_packages + pip3_packages }}"
+    executable: pip3
+  become: True
+  when: python_3
