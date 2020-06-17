@@ -9,20 +9,8 @@
     name: apt-meta
   vars:
     apt_state: absent
-    apt_packages: "{{ oh_my_zsh_shared_packages }}"
+    apt_packages: "{{ openvpn-client-package }}"
 
 - name: remove zshrc and oh-my-zsh base path
   file: path=/root/.oh-my-zsh state=absent
-  become: True
-
-- name: remove oh-my-zsh-conf path
-  file: path=/root/conf state=absent
-  become: True
-
-- name: remove oh-my-zsh-rc symlink
-  file: path=/root/.zshrc state=absent
-  become: True
-
-- name: remove oh-my-zsh-history file
-  file: path=/root/.zsh_history state=absent
   become: True
