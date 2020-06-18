@@ -1,0 +1,6 @@
+---
+
+nfs_client_package:
+  - openvpn
+openvpn_client_conf_dir: "/etc/openvpn"
+
