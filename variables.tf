@@ -18,7 +18,7 @@ variable "disk_size" {
 }
 
 variable "machine-type" {
-  default = "n1-highcpu-8"
+  default = "n1-highcpu-2"
 }
 
 variable "image" {

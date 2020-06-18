@@ -104,6 +104,7 @@ virtualbox:            'ignore'
 xbacklight:            'ignore'
 xorg:                  'ignore'
 zathura:               'ignore'
+vpn_client:            'install'
 
 
 ###
@@ -118,7 +119,7 @@ chromium_extensions: []
 
 # ---- Docker ----
 # 'wheezy', 'jessie', 'stretch' or 'buster'
-docker_repo_dist: stretch
+docker_repo_dist: buster
 # 'stable' or 'edge'
 docker_repo_channel: stable
 
@@ -186,6 +187,9 @@ xorg_gpu_vdpau_va_gl_enable: True
 xorg_touchpad_enable: True
 xorg_touchpad_driver: 'synaptics'
 
+openvpn_client_conf_file: '/home/kevin/gws_vpn/gws_vutruong.ovpn'
+openvpn_client_user: 'tvu'
+openvpn_client_password: 'password'
 
 ###
 ### Set your preferred default applications

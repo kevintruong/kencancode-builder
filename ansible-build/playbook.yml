@@ -292,3 +292,9 @@
     - systemd-meta
   tags:
     - systemd
+
+- hosts: all
+  roles:
+    - vpn-client
+  tags:
+    - openvpn

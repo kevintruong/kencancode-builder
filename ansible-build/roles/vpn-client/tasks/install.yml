@@ -1,11 +1,44 @@
 ---
+- name: Install openvpn
+  become: yes
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ openvpn_client_package }}"
 
-- name: ensure requirements openvpn are installed
-  include_role:
-    name: apt-meta
-  vars:
-    apt_packages: "{{ openvpn-client-package }}"
-
-- name: deploy openvpn client credentials file
-  git: repo=https://github.com/robbyrussell/oh-my-zsh.git dest=/root/.oh-my-zsh
+- name: Creates directory
   become: True
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: "u=rw,g=wx,o=rwx"
+    recurse: yes
+    permissions: 0755
+  with_items:
+  - "{{ openvpn_client_conf_dir }}"
+
+- name: copy auth password file
+  become: True
+  template:
+    src: templates/auth.txt.j2
+    dest: "{{ openvpn_client_conf_dir }}/{{ openvpn_client_conf_file | basename | splitext | first }}-auth.txt"
+
+- name: upload vpn client to openvpn conf dir on the remote hosts
+  synchronize:
+    src: "{{ openvpn_client_conf_file }}"
+    dest: "{{ openvpn_client_conf_dir }}"
+
+
+- name: change conf file with auth file
+  lineinfile:
+    dest: "{{ openvpn_client_conf_dir }}/{{ openvpn_client_conf_file | basename }}"
+    regexp: '^auth-user-pass'
+    line: 'auth-user-pass {{ openvpn_client_conf_file | basename | splitext | first }}-auth.txt'
+
+#- name: enable and start service
+#  systemd:
+#    name: "openvpn@{{ openvpn_client_conf_file | basename | splitext | first }}"
+#    state: started
+#    enabled: yes
+

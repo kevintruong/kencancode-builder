@@ -104,6 +104,7 @@ virtualbox:            'ignore'
 xbacklight:            'ignore'
 xorg:                  'ignore'
 zathura:               'ignore'
+vpn_client:            'install'
 
 
 ###
@@ -185,6 +186,8 @@ xorg_gpu_vdpau_va_gl_enable: True
 # 'libinput' or 'synaptics'
 xorg_touchpad_enable: True
 xorg_touchpad_driver: 'synaptics'
+
+openvpn_client_conf: /tmp/c4000xg-normal
 
 
 ###

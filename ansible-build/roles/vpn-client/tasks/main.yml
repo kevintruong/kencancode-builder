@@ -1,7 +1,7 @@
 ---
 
 - include_tasks: install.yml
-  when: openvpn-client == 'install'
+  when: vpn_client == 'install'
 
 - include_tasks: uninstall.yml
-  when: openvpn-client == 'remove'
+  when: vpn_client == 'remove'
