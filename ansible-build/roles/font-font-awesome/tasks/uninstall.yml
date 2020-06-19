@@ -1,7 +1,0 @@
----
-
-- name: ensure fonts are removed
-  file:
-    state: absent
-    path: "{{ font_font_awesome_font_path }}"
-  notify: update font-cache

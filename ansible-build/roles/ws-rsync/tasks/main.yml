@@ -1,0 +1,7 @@
+---
+
+- include_tasks: install.yml
+  when: ws_rsync == 'install'
+
+- include_tasks: uninstall.yml
+  when: ws_rsync == 'remove'

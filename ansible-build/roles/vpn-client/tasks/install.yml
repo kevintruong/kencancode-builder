@@ -1,5 +1,6 @@
 ---
 - name: Install openvpn
+  become: True
   package:
     name: "{{ item }}"
     state: present
@@ -7,31 +8,34 @@
     - "{{ openvpn_client_package }}"
 
 - name: create openvpn client dir
+  become: True
   file:
     path: "{{ openvpn_client_conf_dir }}"
     state: directory
-    owner: whoami
-    group: whoami
     mode: 0755
 
 - name: copy auth password file
+  become: True
   template:
     src: templates/auth.txt.j2
     dest: "{{ openvpn_client_conf_dir }}/{{ openvpn_client_conf_file | basename | splitext | first }}-auth.txt"
 
 - name: upload vpn client to openvpn conf dir on the remote hosts
+  become: True
   synchronize:
     src: "{{ openvpn_client_conf_file }}"
-    dest: "{{ openvpn_client_conf_dir }}/{{ openvpn_client_conf_file | basename }}"
+    dest: "{{ openvpn_client_conf_dir }}/{{ openvpn_client_conf_file | basename | splitext | first }}.conf"
 
 
 - name: change conf file with auth file
+  become: True
   lineinfile:
-    dest: "{{ openvpn_client_conf_dir }}/{{ openvpn_client_conf_file | basename }}"
+    dest: "{{ openvpn_client_conf_dir }}/{{ openvpn_client_conf_file | basename | splitext | first }}.conf"
     regexp: '^auth-user-pass'
     line: 'auth-user-pass {{ openvpn_client_conf_file | basename | splitext | first }}-auth.txt'
 
 - name: enable and start service
+  become: True
   systemd:
     name: "openvpn@{{ openvpn_client_conf_file | basename | splitext | first }}"
     state: started

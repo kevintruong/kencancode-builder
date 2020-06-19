@@ -1,9 +1,0 @@
----
-
-libreoffice_package_name: libreoffice
-
-libreoffice_icon_name: images_office2013.zip
-libreoffice_icon_path: /usr/share/libreoffice/share/config
-
-libreoffice_base_config: "{{ lookup('env','HOME') }}/.config/libreoffice"
-libreoffice_config_path: "{{ libreoffice_base_config }}/4/user"

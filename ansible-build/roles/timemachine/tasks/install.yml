@@ -1,20 +1,28 @@
 ---
 
-- name: ensure linux timemachine requirements are installed
+- name: make sure workspace rsync installed in remote
   include_role:
-    name: apt-meta
+    name: ws-rsync
   vars:
-    apt_packages: "{{ timemachine_shared_packages }}"
+    ws_rsync: "install"
 
-- name: ensure linux timemachine is downloaded
-  get_url:
-    url: https://raw.githubusercontent.com/cytopia/linux-timemachine/master/timemachine
-    dest: "{{ timemachine_path }}"
-    mode: 0755
-    force: True
-    timeout: 30
-  register: task_result
-  until: task_result is succeeded
-  retries: 30
-  delay: 10
+- name: create backup service dir
   become: True
+  file:
+    path: "/etc/backup"
+    state: directory
+    mode: 0755
+
+- name: Uploading timer file
+  become: True
+  template:
+    src: templates/timemachine.j2
+    dest: "/etc/backup/{{ item.value.timer_command | basename }}"
+    mode: 0640
+  with_dict: "{{ timers }}"
+
+- name: Bringing up timer serivce
+  become: True
+  include_role:
+    name: systemd-timers
+

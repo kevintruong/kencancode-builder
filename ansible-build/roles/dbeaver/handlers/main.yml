@@ -1,6 +1,0 @@
----
-
-- name: install dbeaver
-  apt:
-    deb: "{{ dbeaver_deb_path }}"
-  become: True

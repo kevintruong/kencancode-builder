@@ -1,8 +1,0 @@
----
-
-telegram_download_url: https://telegram.org/dl/desktop/linux
-telegram_opt_path: /opt
-telegram_bin_path: /usr/local/bin
-
-telegram_shared_packages:
-  - pulseaudio

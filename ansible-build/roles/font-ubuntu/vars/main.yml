@@ -1,3 +1,0 @@
----
-
-font_ubuntu_font_path: "{{ lookup('env','HOME') }}/.local/share/fonts"

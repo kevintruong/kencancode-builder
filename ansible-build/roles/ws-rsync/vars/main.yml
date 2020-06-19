@@ -1,0 +1,8 @@
+---
+
+ws_rsync_path: /usr/local/bin/ws-rsync
+
+ws_rsync_shared_packages:
+  - rsync
+  - inotify-tools
+  - sshpass

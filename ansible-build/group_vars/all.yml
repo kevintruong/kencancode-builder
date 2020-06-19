@@ -58,64 +58,30 @@ apt_packages: []
 ### Any other value will ignore the package (neither install nor uninstall)
 
 autorunner:            'ignore'
-chromium:              'ignore'
-clipmenu:              'ignore'
-dbeaver:               'ignore'
-diff_highlight:        'ignore'
+clipmenu:              'install'
+diff_highlight:        'install'
 docker:                'install'
 docker_compose:        'install'
-ffscreencast:          'ignore'
-firefox:               'ignore'
-font_font_awesome:     'ignore'
-font_droid_sans_mono:  'ignore'
-font_san_francisco:    'ignore'
-font_terminus:         'ignore'
-font_ubuntu:           'ignore'
 fzf:                   'install'
-gimp:                  'ignore'
-i3:                    'ignore'
-i3_gaps:               'ignore'
-i3_utils_bin:          'ignore'
-i3_utils_systemd:      'ignore'
-i3blocks_modules:      'ignore'
-icon_moka:             'ignore'
-kops:                  'ignore'
-kubectl:               'ignore'
-libreoffice:           'ignore'
-lxdm:                  'ignore'
-neovim:                'ignore'
-network_manager:       'ignore'
-oh_my_zsh:             'ignore'
+neovim:                'install'
+oh_my_zsh:             'install'
 packer:                'ignore'
-pinta:                 'ignore'
 ranger:                'ignore'
-skype:                 'ignore'
-sublime:               'ignore'
 sxiv:                  'ignore'
-telegram:              'ignore'
 terraform:             'ignore'
-theme_arc:             'ignore'
-thunar:                'ignore'
-thunar_custom_actions: 'ignore'
-thunderbird:           'ignore'
-timemachine:           'ignore'
-urxvt:                 'ignore'
 virtualbox:            'ignore'
 xbacklight:            'ignore'
 xorg:                  'ignore'
 zathura:               'ignore'
 vpn_client:            'install'
+nfs_client:            'install'
+ws_rsync:              'remove'
+timemachine:           'install'
 
 
 ###
 ### Settings for packages
 ###
-
-# ---- Chromium ----
-# Only works for extensions from web store
-chromium_extensions: []
-# - dbepggeogbaibhgnhhndojpepiihcmeb
-# - pgdnlhfefecpicbbihgmbmffkjpaplco
 
 # ---- Docker ----
 # 'wheezy', 'jessie', 'stretch' or 'buster'
@@ -131,78 +97,28 @@ fzf_completion: True
 # Enable/disable key bindings (CTRL-T, CTRL-R, ALT-C)?
 fzf_key_bindings: True
 
-# ---- LXDM ----
-lxdm_dpi: 96
-lxdm_gtk_theme: Industrial
-lxdm_show_user_list: False
-
-# ---- NetworkManager ----
-network_manager_nm_applet: True
-network_manager_plugin_openvpn: True
-network_manager_plugin_l2tp: False
-network_manager_plugin_openconnect: False
-network_manager_plugin_pptp: False
-network_manager_plugin_ssh: False
-network_manager_plugin_strongswan: False
-network_manager_plugin_vpnc: False
-
-# ---- Skype ----
-# 'stable' or 'unstable'
-skype_repo_channel: stable
-
-# ---- Sublime ----
-# 'stable' or 'dev'
-sublime_repo_channel: stable
-
-# ---- sxiv ----
-# Make sxiv default program for pictures
-sxiv_default_image_viewer: True
-
-# ---- Thunar ----
-thunar_volman_enable: True
-thunar_archive_plugin_enable: True
-
-# ---- Thunderbird ----
-thunderbird_ext_official: []
-#  - https://addons.mozilla.org/en-US/thunderbird/addon/dkim-verifier/
-#  - https://addons.mozilla.org/en-US/thunderbird/addon/enigmail/
-#  - https://addons.mozilla.org/en-US/thunderbird/addon/gnotifier/
-#  - https://addons.mozilla.org/en-US/thunderbird/addon/lightning/
-#  - https://addons.mozilla.org/en-US/thunderbird/addon/provider-for-google-calendar/
-#  - https://addons.mozilla.org/en-US/thunderbird/addon/x-unsent-support/
-
-# List of urls pages in which an XPI download link can be found.
-# Note: The first found XPI download url will be used
-thunderbird_ext_custom: []
-#  - https://github.com/ExchangeCalendar/exchangecalendar/releases
-
-# ---- Xorg ----
-# Supported values: 'amdgpu' 'ati' 'intel' 'modesetting' 'nouveau' 'nvidia' 'radeon'
-xorg_gpu: modesetting
-# Supported values: 'XAA' 'EXA' 'UXA' 'SNA' 'glamor'
-xorg_gpu_accel_method: glamor
-# Enable VDPAU_DRIVER=va_gl systemwide
-xorg_gpu_vdpau_va_gl_enable: True
-# 'libinput' or 'synaptics'
-xorg_touchpad_enable: True
-xorg_touchpad_driver: 'synaptics'
-
+# openvpn configuration
 openvpn_client_conf_file: '/home/kevin/gws_vpn/gws_vutruong.ovpn'
-openvpn_client_user: 'tvu'
+openvpn_client_user: 'tngothanh'
 openvpn_client_password: 'password'
 
-###
-### Set your preferred default applications
-###
-xdg_mime_defaults:
-  - desktop_file: Thunar.desktop
-    mime_types:
-      - inode/directory
-  - desktop_file: chromium.desktop
-    mime_types:
-      - text/html
-      - text/xml
-      - application/xhtml_xml
-      - application/x-mimearchive
-      - x-scheme-handler/http
-      - x-scheme-handler/https
+# NFS client mount configuration
+
+# Time machine - backup
+timers:
+  backupgitlab:
+    timer_command: /etc/backup/backup_gitlab.sh
+    timer_user: backuper
+    timer_OnStartupSec: 5m
+    timer_OnUnitActiveSec: 1w
+    backup:
+      src: /etc/gitlab
+      des: /mnt/VERIK/gitlab-backup
+  backupRedmine:
+    timer_command: /etc/backup/backup_redmine.sh
+    timer_user: backuper
+    timer_OnStartupSec: 5m
+    timer_OnUnitActiveSec: 1w
+    backup:
+      src: /etc/redmine
+      des: /etc/redmine_backup

@@ -1,7 +1,8 @@
 ---
 
-- name: ensure linux timemachine is removed
-  file:
-    state: absent
-    path: "{{ timemachine_path }}"
+- name: ensure timemachine is removed
   become: True
+  vars:
+    ws_rsync: "uninstall"
+  roles:
+    - ws_rsync

@@ -43,16 +43,8 @@
   tags: autorunner
 
 - hosts: all
-  roles: [chromium]
-  tags: chromium
-
-- hosts: all
   roles: [clipmenu]
   tags: clipmenu
-
-- hosts: all
-  roles: [dbeaver]
-  tags: dbeaver
 
 - hosts: all
   roles: [diff-highlight]
@@ -67,56 +59,9 @@
   tags: docker-compose
 
 - hosts: all
-  roles: [ffscreencast]
-  tags: ffscreencast
-
-- hosts: all
-  roles: [firefox]
-  tags: firefox
-
-- hosts: all
   roles: [fzf]
   tags: fzf
 
-- hosts: all
-  roles: [gimp]
-  tags: gimp
-
-- hosts: all
-  roles: [i3-utils-bin]
-  tags: i3-utils-bin
-
-- hosts: all
-  roles: [i3]
-  tags: i3
-
-- hosts: all
-  roles: [i3-gaps]
-  tags: i3-gaps
-
-- hosts: all
-  roles: [i3-utils-systemd]
-  tags: i3-utils-systemd
-
-- hosts: all
-  roles: [i3blocks-modules]
-  tags: i3blocks-modules
-
-- hosts: all
-  roles: [kops]
-  tags: kops
-
-- hosts: all
-  roles: [kubectl]
-  tags: kubectl
-
-- hosts: all
-  roles: [libreoffice]
-  tags: libreoffice
-
-- hosts: all
-  roles: [lxdm]
-  tags: lxdm
 
 - hosts: all
   roles: [neovim]
@@ -135,28 +80,14 @@
   tags: packer
 
 - hosts: all
-  roles: [pinta]
-  tags: pinta
-
-- hosts: all
   roles: [ranger]
   tags: ranger
 
-- hosts: all
-  roles: [skype]
-  tags: skype
-
-- hosts: all
-  roles: [sublime]
-  tags: sublime
 
 - hosts: all
   roles: [sxiv]
   tags: sxiv
 
-- hosts: all
-  roles: [telegram]
-  tags: telegram
 
 - hosts: all
   roles: [terraform]
@@ -171,12 +102,8 @@
   tags: thunar-custom-actions
 
 - hosts: all
-  roles: [thunderbird]
-  tags: thunderbird
-
-- hosts: all
-  roles: [timemachine]
-  tags: timemachine
+  roles: [ws-rsync]
+  tags: ws-rsync
 
 - hosts: all
   roles: [urxvt]
@@ -199,43 +126,6 @@
   tags: zathura
 
 
-###
-### Install fonts
-###
-- hosts: all
-  roles: [font-droid-sans-mono]
-  tags:
-    - font-droid-sans-mono
-    - font
-    - fonts
-
-- hosts: all
-  roles: [font-font-awesome]
-  tags:
-    - font-font-awesome
-    - font
-    - fonts
-
-- hosts: all
-  roles: [font-san-francisco]
-  tags:
-    - font-san-francisco
-    - font
-    - fonts
-
-- hosts: all
-  roles: [font-terminus]
-  tags:
-    - font-terminus
-    - font
-    - fonts
-
-- hosts: all
-  roles: [font-ubuntu]
-  tags:
-    - font-ubuntu
-    - font
-    - fonts
 
 ### kencancode customize
 - hosts: all
@@ -243,25 +133,10 @@
   tags: vpn-client
 
 
-
-###
-### Install themes/icons
-###
+### timemachine
 - hosts: all
-  roles: [icon-moka]
-  tags:
-    - icon-moka
-    - icon
-    - icons
-
-- hosts: all
-  roles: [theme-arc]
-  tags:
-    - theme-arc
-    - theme
-    - themes
-
-
+  roles: [timemachine]
+  tags: timemachine
 ###
 ### Install Custom apt Packages
 ###

@@ -1,0 +1,4 @@
+---
+
+# 'install', 'remove' or 'ignore'
+ws_rsync: 'ignore'

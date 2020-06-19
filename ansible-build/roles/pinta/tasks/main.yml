@@ -1,7 +1,0 @@
----
-
-- include_tasks: install.yml
-  when: pinta == 'install'
-
-- include_tasks: uninstall.yml
-  when: pinta == 'remove'
