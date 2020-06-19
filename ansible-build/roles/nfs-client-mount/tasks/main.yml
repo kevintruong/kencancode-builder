@@ -4,5 +4,5 @@
   when: nfs_client_mount == 'install'
 
 - include_tasks: uninstall.yml
-  when: ntf_client_mount == 'remove'
+  when: nfs_client_mount == 'remove'
 

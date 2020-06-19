@@ -1,0 +1,6 @@
+---
+
+- name: remove NFS client mount
+  user: name=root shell=/bin/bash
+  become: True
+
