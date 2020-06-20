@@ -6,6 +6,14 @@ provider "google" {
   region = var.region
 }
 
+terraform {
+  backend "gcs" {
+    bucket = "kencancode"
+    prefix = "gws-builder"
+    credentials = "kencancode-builder.json"
+  }
+}
+
 resource "google_compute_network" "default" {
   name = "test-network"
 }
@@ -51,7 +59,6 @@ resource "google_compute_instance" "kencancode" {
   desired_status = var.vm-state
   tags = [
     "jenkins"]
-  //  desired_status = "RUNNING"
 
   boot_disk {
     initialize_params {

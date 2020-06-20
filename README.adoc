@@ -1,7 +1,9 @@
 = kencancode-builder
 
-== Terra-form - Infrastructure as code
+== Terra-Form - Infrastructure as code
+
 === Create GCP preemptible instance with terraform
+
 [source]
 ----
 # start VM
@@ -9,6 +11,7 @@ terraform apply -var="vm-state=RUNNING"
 # stop VM
 terraform apply -var="vm-state=TERMINATED"
 ----
+
 === Destroy resource
 
 [source]
@@ -17,6 +20,8 @@ terraform destroy
 ----
 
 == Ansible playbook for configure
+
+=== Configure your target with ansible playbook
 
 === Auto Deploy Jenkins Master
 
