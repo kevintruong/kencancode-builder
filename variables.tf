@@ -1,5 +1,9 @@
+variable "prefix" {
+  default = "gws"
+}
+
 variable "instance-name" {
-  default = "kencancode-builder"
+  default = "kencancode"
 }
 variable "project" {
   default = "kencancode-builder"

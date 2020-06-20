@@ -1,4 +1,15 @@
 // Configure the Google Cloud provider
+//terraform {
+//  backend "gcs" {
+//    bucket = "kencancode"
+//    prefix = "gws-builder"
+//    credentials = "kencancode-builder.json"
+//  }
+//}
+
+locals {
+  service_name = "${var.project}-${var.prefix}"
+}
 
 provider "google" {
   credentials = file("kencancode-builder.json")
@@ -6,20 +17,13 @@ provider "google" {
   region = var.region
 }
 
-terraform {
-  backend "gcs" {
-    bucket = "kencancode"
-    prefix = "gws-builder"
-    credentials = "kencancode-builder.json"
-  }
-}
 
 resource "google_compute_network" "default" {
-  name = "test-network"
+  name = local.service_name
 }
 
 resource "google_compute_firewall" "default" {
-  name = "default"
+  name = "${local.service_name}-firewall"
   network = google_compute_network.default.name
 
   allow {
@@ -43,7 +47,7 @@ resource "google_compute_firewall" "default" {
 
 
 resource "google_compute_disk" "builder-data" {
-  name = "data"
+  name = "${local.service_name}-data"
   zone = var.zone
   size = var.disk_size
   type = "pd-ssd"
@@ -52,7 +56,7 @@ resource "google_compute_disk" "builder-data" {
 // A single Google Cloud Engine instance
 
 resource "google_compute_instance" "kencancode" {
-  name = var.instance-name
+  name = local.service_name
   machine_type = var.machine-type
   zone = var.zone
   allow_stopping_for_update = true
