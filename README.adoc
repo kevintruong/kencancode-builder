@@ -1,8 +1,32 @@
-= kencancode-builder
+=
 
-== Terra-Form - Infrastructure as code
+I found out that I always feel stress on bring up a cloud instance and setup development environment on the cloud.
+the first issue is about the processing on go to console cloud website then click and click to configure params for a cloud instance quite anoying me. and how about that I have many cloud instance which each instance for one project.
+
+Another thing is setup the development environment.
+Each project there has a different configuration.
+They may have the same base configuration but different in details. if I implicity on using the same base configuration, then the development look not perfect to me.
+The consequence is that I have to make some work around inside each instance.
+I do not love that way.
+
+Third is the issue about how to work in remote like local.
+That why I came to develop a utility tool called: `workspace-rsync`.
+The tools will help on sync up workspace in local and remote and run command remotely in cloud instance.
+
+== Terraform - Infrastructure as code
+
+In the section, I will describe about how to use `terraform` to create a simple instance in GCP. Why GCP and not AWS ?
+Because GCP offers us (developer) a free tier with 300$.
+It's quite a lot of money.
+With good strategy, we can live with the free tier in the whole year.
+
+Another question that I will answer is why I choose Terraform for this work.
+
+=== Basic knowledge about terraform
+// TODO I will talk about terraform here and answer the question above
 
 === Create GCP preemptible instance with terraform
+// TODO explain about GCP preemptible instance. Why we need to use the kind of instance in the work.
 
 [source]
 ----
@@ -19,11 +43,21 @@ terraform apply -var="vm-state=TERMINATED"
 terraform destroy
 ----
 
-== Ansible playbook for configure
+== Ansible playbook for configure remote VM resource.
+
+=== Basic knowledge about ansible
+//TODO
+
+
+=== Create custom profile from the sample
+//TODO guide for create ansible custom profile
+// for example: a profile for a specific project
 
 === Configure your target with ansible playbook
 
-=== Auto Deploy Jenkins Master
+=== Ansible configure using profile
+
+==== Auto Deploy Jenkins Master
 
 [source]
 ----
@@ -34,3 +68,6 @@ echo `terraform output ip` > ansible-playbook/inventory
 ----
 ansible-playbook -i ansible-practice/inventory -u ken ansible-practice/ansible-jenkin-master.yml
 ----
+
+=== Bring up It infrastructure by using ansible
+// TODO Advance topic while I want to use Ansible to configure IT-Infrastructure of my company.
