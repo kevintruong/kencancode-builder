@@ -1,7 +1,7 @@
 ---
 
-- name: ensure linux timemachine is removed
+- name: ensure ws-rsync is removed
   file:
     state: absent
-    path: "{{ timemachine_path }}"
+    path: "{{ ws_rsync_path }}"
   become: True

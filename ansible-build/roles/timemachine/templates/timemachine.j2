@@ -1,5 +1,0 @@
-# Template for rsync from src to des
-# Managed by ansible
-# Role: systemd-timer
-#
-rsync -az --delete {{ item.value.backup.src }} {{ item.value.backup.des }}

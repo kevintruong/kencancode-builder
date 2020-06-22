@@ -2,14 +2,14 @@
 
 - name: make sure workspace rsync installed in remote
   include_role:
-    name: ws-rsync
+    name: timemachine
   vars:
-    ws_rsync: "install"
+    timemachine: "install"
 
 - name: create backup service dir
   become: True
   file:
-    path: "/etc/backup"
+    path: "{{ backup_service_dir }}"
     state: directory
     mode: 0755
 
@@ -17,12 +17,15 @@
   become: True
   template:
     src: templates/timemachine.j2
-    dest: "/etc/backup/{{ item.value.timer_command | basename }}"
+    dest: "{{ backup_service_dir }}/{{ item.value.timer_command | basename }}"
     mode: 0640
-  with_dict: "{{ timers }}"
+  with_dict: "{{ backup_crontask_config.timers }}"
 
 - name: Bringing up timer serivce
   become: True
   include_role:
     name: systemd-timers
+  vars:
+    timers: "{{ item.value }}"
+  with_dict: "{{ backup_crontask_config }}"
 

@@ -1,4 +1,4 @@
 ---
 
 # 'install', 'remove' or 'ignore'
-timemachine: 'ignore'
+backup_crontask: 'ignore'

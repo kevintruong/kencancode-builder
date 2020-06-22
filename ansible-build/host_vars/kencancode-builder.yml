@@ -106,7 +106,7 @@ xorg:                  'ignore'
 zathura:               'ignore'
 vpn_client:            'install'
 ws-rsync:              'install'
-
+backup_crontask:       'uninstall'
 ###
 ### Settings for packages
 ###
@@ -205,3 +205,23 @@ xdg_mime_defaults:
       - application/x-mimearchive
       - x-scheme-handler/http
       - x-scheme-handler/https
+
+
+backup_crontask_config:
+  timers:
+    backupgitlab:
+      timer_command: /etc/backup/backup_gitlab.sh
+      timer_user: backuper
+      timer_OnStartupSec: 5m
+      timer_OnUnitActiveSec: 1w
+      backup:
+        src: /etc/gitlab
+        des: /mnt/VERIK/gitlab-backup
+    backupRedmine:
+      timer_command: /etc/backup/backup_redmine.sh
+      timer_user: backuper
+      timer_OnStartupSec: 5m
+      timer_OnUnitActiveSec: 1w
+      backup:
+        src: /etc/redmine
+        des: /etc/redmine_backup

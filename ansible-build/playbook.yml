@@ -35,141 +35,147 @@
     - bootstrap-python
 
 
-###
-### Install Role Packages
-###
-- hosts: all
-  roles: [autorunner]
-  tags: autorunner
-
-- hosts: all
-  roles: [clipmenu]
-  tags: clipmenu
-
-- hosts: all
-  roles: [diff-highlight]
-  tags: diff-highlight
-
-- hosts: all
-  roles: [docker]
-  tags: docker
-
-- hosts: all
-  roles: [docker-compose]
-  tags: docker-compose
-
-- hosts: all
-  roles: [fzf]
-  tags: fzf
-
-
-- hosts: all
-  roles: [neovim]
-  tags: neovim
-
-- hosts: all
-  roles: [network-manager]
-  tags: network-manager
-
-- hosts: all
-  roles: [oh-my-zsh]
-  tags: oh-my-zsh
-
-- hosts: all
-  roles: [packer]
-  tags: packer
-
-- hosts: all
-  roles: [ranger]
-  tags: ranger
-
-
-- hosts: all
-  roles: [sxiv]
-  tags: sxiv
-
-
-- hosts: all
-  roles: [terraform]
-  tags: terraform
-
-- hosts: all
-  roles: [thunar]
-  tags: thunar
-
-- hosts: all
-  roles: [thunar-custom-actions]
-  tags: thunar-custom-actions
-
+####
+#### Install Role Packages
+####
+#- hosts: all
+#  roles: [autorunner]
+#  tags: autorunner
+#
+#- hosts: all
+#  roles: [clipmenu]
+#  tags: clipmenu
+#
+#- hosts: all
+#  roles: [diff-highlight]
+#  tags: diff-highlight
+#
+#- hosts: all
+#  roles: [docker]
+#  tags: docker
+#
+#- hosts: all
+#  roles: [docker-compose]
+#  tags: docker-compose
+#
+#- hosts: all
+#  roles: [fzf]
+#  tags: fzf
+#
+#
+#- hosts: all
+#  roles: [neovim]
+#  tags: neovim
+#
+#- hosts: all
+#  roles: [network-manager]
+#  tags: network-manager
+#
+#- hosts: all
+#  roles: [oh-my-zsh]
+#  tags: oh-my-zsh
+#
+#- hosts: all
+#  roles: [packer]
+#  tags: packer
+#
+#- hosts: all
+#  roles: [ranger]
+#  tags: ranger
+#
+#
+#- hosts: all
+#  roles: [sxiv]
+#  tags: sxiv
+#
+#
+#- hosts: all
+#  roles: [terraform]
+#  tags: terraform
+#
+#- hosts: all
+#  roles: [thunar]
+#  tags: thunar
+#
+#- hosts: all
+#  roles: [thunar-custom-actions]
+#  tags: thunar-custom-actions
+#
 - hosts: all
   roles: [ws-rsync]
   tags: ws-rsync
+#
+#- hosts: all
+#  roles: [urxvt]
+#  tags: urxvt
+#
+#- hosts: all
+#  roles: [virtualbox]
+#  tags: virtualbox
+#
+#- hosts: all
+#  roles: [xbacklight]
+#  tags: xbacklight
+#
+#- hosts: all
+#  roles: [xorg]
+#  tags: xorg
+#
+#- hosts: all
+#  roles: [zathura]
+#  tags: zathura
+#
+#
+#
+#### kencancode customize
+#- hosts: all
+#  roles: [vpn-client]
+#  tags: vpn-client
+#
 
 - hosts: all
-  roles: [urxvt]
-  tags: urxvt
+  roles: [backup-crontask]
+  tags: backup-crontask
+#
+#
+#### timemachine
+#- hosts: all
+#  roles: [timemachine]
+#  tags: timemachine
+####
+#### Install Custom apt Packages
+####
+#- hosts: all
+#  roles:
+#    - apt-meta
+#  tags:
+#    - apt
+#
+#
+####
+#### Set default applications
+####
+#- hosts: all
+#  roles:
+#    - xdg-mime-meta
+#  tags:
+#    - xdg
+#    - xdg-open
+#    - xdg-mime
+#
+#
+####
+#### Manager systemd services
+####
+#- hosts: all
+#  roles:
+#    - systemd-meta
+#  tags:
+#    - systemd
+#
+#- hosts: all
+#  roles:
+#    - vpn-client
+#  tags:
+#    - openvpn
 
-- hosts: all
-  roles: [virtualbox]
-  tags: virtualbox
-
-- hosts: all
-  roles: [xbacklight]
-  tags: xbacklight
-
-- hosts: all
-  roles: [xorg]
-  tags: xorg
-
-- hosts: all
-  roles: [zathura]
-  tags: zathura
-
-
-
-### kencancode customize
-- hosts: all
-  roles: [vpn-client]
-  tags: vpn-client
-
-
-### timemachine
-- hosts: all
-  roles: [timemachine]
-  tags: timemachine
-###
-### Install Custom apt Packages
-###
-- hosts: all
-  roles:
-    - apt-meta
-  tags:
-    - apt
-
-
-###
-### Set default applications
-###
-- hosts: all
-  roles:
-    - xdg-mime-meta
-  tags:
-    - xdg
-    - xdg-open
-    - xdg-mime
-
-
-###
-### Manager systemd services
-###
-- hosts: all
-  roles:
-    - systemd-meta
-  tags:
-    - systemd
-
-- hosts: all
-  roles:
-    - vpn-client
-  tags:
-    - openvpn

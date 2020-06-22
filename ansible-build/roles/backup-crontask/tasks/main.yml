@@ -1,0 +1,7 @@
+---
+
+- include_tasks: install.yml
+  when: backup_crontask == 'install'
+
+- include_tasks: uninstall.yml
+  when: backup_crontask == 'remove'

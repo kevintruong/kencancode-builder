@@ -75,8 +75,8 @@ xorg:                  'ignore'
 zathura:               'ignore'
 vpn_client:            'install'
 nfs_client:            'install'
-ws_rsync:              'remove'
-timemachine:           'install'
+ws_rsync:              'uninstall'
+backup_crontask:       'install'
 
 
 ###
@@ -105,20 +105,21 @@ openvpn_client_password: 'password'
 # NFS client mount configuration
 
 # Time machine - backup
-timers:
-  backupgitlab:
-    timer_command: /etc/backup/backup_gitlab.sh
-    timer_user: backuper
-    timer_OnStartupSec: 5m
-    timer_OnUnitActiveSec: 1w
-    backup:
-      src: /etc/gitlab
-      des: /mnt/VERIK/gitlab-backup
-  backupRedmine:
-    timer_command: /etc/backup/backup_redmine.sh
-    timer_user: backuper
-    timer_OnStartupSec: 5m
-    timer_OnUnitActiveSec: 1w
-    backup:
-      src: /etc/redmine
-      des: /etc/redmine_backup
+backup_crontask_config:
+  timers:
+    backupgitlab:
+      timer_command: /etc/backup/backup_gitlab.sh
+      timer_user: backuper
+      timer_OnStartupSec: 5m
+      timer_OnUnitActiveSec: 1w
+      backup:
+        src: /etc/gitlab
+        des: /mnt/VERIK/gitlab-backup
+    backupRedmine:
+      timer_command: /etc/backup/backup_redmine.sh
+      timer_user: backuper
+      timer_OnStartupSec: 5m
+      timer_OnUnitActiveSec: 1w
+      backup:
+        src: /etc/redmine
+        des: /etc/redmine_backup
