@@ -4,5 +4,5 @@
 # Managed by ansible
 # Role: systemd-timer
 # {{ item.key }}
-
+rm `ls -t | awk 'NR>{{item.value.backup.max_revision}}'`
 /usr/local/bin/timemachine {{ item.value.backup.src }} {{ item.value.backup.des }}
