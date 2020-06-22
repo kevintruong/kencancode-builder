@@ -13,12 +13,20 @@
     state: directory
     mode: 0755
 
+- name: create backup directory
+  become: True
+  file:
+    path: "{{item.value.backup.des }}"
+    state: directory
+    mode: 077
+  with_dict: "{{ backup_crontask_config.timers }}"
+
 - name: Uploading timer file
   become: True
   template:
     src: templates/timemachine.j2
     dest: "{{ backup_service_dir }}/{{ item.value.timer_command | basename }}"
-    mode: 0640
+    mode: 0755
   with_dict: "{{ backup_crontask_config.timers }}"
 
 - name: Bringing up timer serivce

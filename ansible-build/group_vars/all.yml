@@ -107,19 +107,17 @@ openvpn_client_password: 'password'
 # Time machine - backup
 backup_crontask_config:
   timers:
-    backupgitlab:
+    backup_gitlab:
       timer_command: /etc/backup/backup_gitlab.sh
-      timer_user: backuper
       timer_OnStartupSec: 5m
-      timer_OnUnitActiveSec: 1w
+      timer_OnUnitActiveSec: 5m
       backup:
-        src: /etc/gitlab
-        des: /mnt/VERIK/gitlab-backup
-    backupRedmine:
+        src: /var/log
+        des: /tmp/gitlab-backup
+    backup_redmine:
       timer_command: /etc/backup/backup_redmine.sh
-      timer_user: backuper
       timer_OnStartupSec: 5m
-      timer_OnUnitActiveSec: 1w
+      timer_OnUnitActiveSec: 10m
       backup:
-        src: /etc/redmine
-        des: /etc/redmine_backup
+        src: /var/run
+        des: /tmp/redmine-backup
