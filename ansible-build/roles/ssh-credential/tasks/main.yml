@@ -1,0 +1,7 @@
+---
+
+- include_tasks: install.yml
+  when: ssh_credential == 'install'
+
+- include_tasks: uninstall.yml
+  when: ssh_credential == 'uninstall'

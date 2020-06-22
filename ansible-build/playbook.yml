@@ -136,6 +136,15 @@
 - hosts: all
   roles: [backup-crontask]
   tags: backup-crontask
+
+- hosts: all
+  roles: [ssh-credential]
+  tags: ssh-credential
+
+- hosts: all
+  roles: [data-sync]
+  tags: data-sync
+#
 #
 #
 #### timemachine

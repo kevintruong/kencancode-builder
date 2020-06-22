@@ -1,0 +1,7 @@
+---
+
+- include_tasks: install.yml
+  when: data_sync == 'install'
+
+- include_tasks: uninstall.yml
+  when: data_sync == 'uninstall'

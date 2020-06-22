@@ -46,12 +46,12 @@ resource "google_compute_firewall" "default" {
 }
 
 
-resource "google_compute_disk" "builder-data" {
-  name = "${local.service_name}-data"
-  zone = var.zone
-  size = var.disk_size
-  type = "pd-ssd"
-}
+//resource "google_compute_disk" "builder-data" {
+//  name = "${local.service_name}-data"
+//  zone = var.zone
+//  size = var.disk_size
+//  type = "pd-ssd"
+//}
 
 // A single Google Cloud Engine instance
 
@@ -67,12 +67,16 @@ resource "google_compute_instance" "kencancode" {
   boot_disk {
     initialize_params {
       image = var.image
+      size = var.disk_size
+      type = "pd-ssd"
     }
   }
 
-  attached_disk {
-    source = google_compute_disk.builder-data.self_link
-  }
+//  attached_disk {
+//    source = google_compute_disk.builder-data.self_link
+//    size = var.disk_size
+//    type = "pd-ssd"
+//  }
 
   scheduling {
     preemptible = true

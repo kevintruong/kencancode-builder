@@ -77,6 +77,8 @@ vpn_client:            'install'
 nfs_client:            'install'
 ws_rsync:              'uninstall'
 backup_crontask:       'install'
+ssh_credential:        'uninstall'
+data_sync:        'install'
 
 
 ###
@@ -131,3 +133,14 @@ backup_crontask_config:
         src: /var/run
         des: /tmp/redmine-backup
         max_revision: 7
+
+ssh_credentials_dir: /home/kevin/.ssh
+
+data_sync_config:
+  ssh_credential:
+    local_src: /home/kevin/.ssh
+    remote_dest: /home/kevin/
+
+  hosts:
+    local_src: /etc/hosts
+    remote_dest: /etc/hosts

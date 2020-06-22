@@ -1,0 +1,20 @@
+---
+- name: get the username running the deploy
+  become: false
+  local_action: command whoami
+  register: username
+
+- debug: var=username
+
+- name: create ssh dir client dir
+  become: True
+  file:
+    path: "/home/{{ username.stdout }}/.ssh"
+    state: directory
+    mode: 0755
+
+- debug: "{{ ssh_credentials_dir }}"
+- name: copy ssh credentials dir to ssh dir
+  copy:
+    src: "{{ ssh_credentials_dir }}"
+    dest: "/home/{{ username.stdout }}"

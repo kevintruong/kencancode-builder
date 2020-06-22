@@ -30,7 +30,6 @@
   with_dict: "{{ backup_crontask_config.timers }}"
 
 - name: Bringing up timer serivce
-  become: True
   include_role:
     name: systemd-timers
   vars:

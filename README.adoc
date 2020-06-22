@@ -69,5 +69,12 @@ echo `terraform output ip` > ansible-playbook/inventory
 ansible-playbook -i ansible-practice/inventory -u ken ansible-practice/ansible-jenkin-master.yml
 ----
 
-=== Bring up It infrastructure by using ansible
+=== Bring up IT Infrastructure using ansible
 // TODO Advance topic while I want to use Ansible to configure IT-Infrastructure of my company.
+
+== Quick note
+
+[source,shell]
+----
+sed -i "/kencancode/c\\`terraform output ip` kencancode " /tmp/hosts
+----

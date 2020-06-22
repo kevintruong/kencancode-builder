@@ -1,0 +1,31 @@
+---
+- name: get the username running the deploy
+  become: false
+  local_action: command whoami
+  register: username
+
+- debug: var=username
+
+- name: "Checking folders"
+  stat:
+    path: "{{item.value.remote_dest}}"
+  register: folder_stats
+  with_dict: "{{ data_sync_config }}"
+
+- name: "Creating multiple folders without disturbing previous permissions"
+  file:
+    path: "{{item.item}}"
+    state: directory
+    mode: 0755
+    group: root
+    owner: root
+  when: item.stat.exists == false
+  with_items:
+    - "{{folder_stats.results}}"
+
+- name: copy data to ssh dir
+  become: True
+  copy:
+    src: "{{ item.value.local_src }}"
+    dest: "{{ item.value.remote_dest }}"
+  with_dict: "{{ data_sync_config }}"
