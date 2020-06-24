@@ -38,43 +38,43 @@
 ####
 #### Install Role Packages
 ####
-#- hosts: all
-#  roles: [autorunner]
-#  tags: autorunner
-#
-#- hosts: all
-#  roles: [clipmenu]
-#  tags: clipmenu
-#
-#- hosts: all
-#  roles: [diff-highlight]
-#  tags: diff-highlight
-#
-#- hosts: all
-#  roles: [docker]
-#  tags: docker
-#
-#- hosts: all
-#  roles: [docker-compose]
-#  tags: docker-compose
-#
-#- hosts: all
-#  roles: [fzf]
-#  tags: fzf
-#
-#
-#- hosts: all
-#  roles: [neovim]
-#  tags: neovim
-#
-#- hosts: all
-#  roles: [network-manager]
-#  tags: network-manager
-#
-#- hosts: all
-#  roles: [oh-my-zsh]
-#  tags: oh-my-zsh
-#
+- hosts: all
+  roles: [autorunner]
+  tags: autorunner
+
+- hosts: all
+  roles: [clipmenu]
+  tags: clipmenu
+
+- hosts: all
+  roles: [diff-highlight]
+  tags: diff-highlight
+
+- hosts: all
+  roles: [docker]
+  tags: docker
+
+- hosts: all
+  roles: [docker-compose]
+  tags: docker-compose
+
+- hosts: all
+  roles: [fzf]
+  tags: fzf
+
+
+- hosts: all
+  roles: [neovim]
+  tags: neovim
+
+- hosts: all
+  roles: [network-manager]
+  tags: network-manager
+
+- hosts: all
+  roles: [oh-my-zsh]
+  tags: oh-my-zsh
+
 #- hosts: all
 #  roles: [packer]
 #  tags: packer
@@ -127,19 +127,15 @@
 #
 #
 #
-#### kencancode customize
-#- hosts: all
-#  roles: [vpn-client]
-#  tags: vpn-client
-#
+### kencancode customize
+- hosts: all
+  roles: [vpn-client]
+  tags: vpn-client
+
 
 - hosts: all
   roles: [backup-crontask]
   tags: backup-crontask
-
-- hosts: all
-  roles: [ssh-credential]
-  tags: ssh-credential
 
 - hosts: all
   roles: [data-sync]
@@ -148,10 +144,10 @@
 #
 #
 #### timemachine
-#- hosts: all
-#  roles: [timemachine]
-#  tags: timemachine
-####
+- hosts: all
+  roles: [timemachine]
+  tags: timemachine
+###
 #### Install Custom apt Packages
 ####
 #- hosts: all
@@ -173,18 +169,11 @@
 #    - xdg-mime
 #
 #
-####
-#### Manager systemd services
-####
-#- hosts: all
-#  roles:
-#    - systemd-meta
-#  tags:
-#    - systemd
-#
-#- hosts: all
-#  roles:
-#    - vpn-client
-#  tags:
-#    - openvpn
-
+###
+### Manager systemd services
+###
+- hosts: all
+  roles:
+    - systemd-meta
+  tags:
+    - systemd
