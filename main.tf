@@ -95,7 +95,7 @@ resource "google_compute_instance" "kencancode" {
   }
 
   metadata = {
-    ssh-keys = "${var.ssh-user}:${file("~/.ssh/id_rsa.pub")}"
+    ssh-keys = "${var.ssh-user}:${file("/home/kevin/.ssh/id_rsa.pub")}"
   }
 
 }

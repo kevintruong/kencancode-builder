@@ -123,20 +123,21 @@ endif
 
 # (Step 4/4) Deploy your system
 deploy-tools:
+	export ANSIBLE_HOST_KEY_CHECKING=False
 ifeq ($(USER),root)
 	$(error Target 'deploy-tools' must be run as normal user without sudo)
 endif
 ifndef ROLE
 ifndef IGNORE
-	ansible-playbook -vv -i $(DIR)/inventory $(DIR)/playbook.yml --limit ${PROFILE} --diff --ask-become-pass $(ARG)
+	ansible-playbook -i $(DIR)/inventory $(DIR)/playbook.yml --limit ${PROFILE} --diff --ask-become-pass $(ARG)
 else
-	ansible-playbook -vv -i $(DIR)/inventory $(DIR)/playbook.yml --limit ${PROFILE} --diff --ask-become-pass $(ARG) --skip-tags=$(IGNORE)
+	ansible-playbook -i $(DIR)/inventory $(DIR)/playbook.yml --limit ${PROFILE} --diff --ask-become-pass $(ARG) --skip-tags=$(IGNORE)
 endif
 else
 ifndef IGNORE
-	ansible-playbook -vv -i $(DIR)/inventory $(DIR)/playbook.yml --limit ${PROFILE} --diff --ask-become-pass $(ARG) -t $(ROLE)
+	ansible-playbook -i $(DIR)/inventory $(DIR)/playbook.yml --limit ${PROFILE} --diff --ask-become-pass $(ARG) -t $(ROLE)
 else
-	ansible-playbook -vv -i $(DIR)/inventory $(DIR)/playbook.yml --limit ${PROFILE} --diff --ask-become-pass $(ARG) -t $(ROLE) --skip-tags=$(IGNORE)
+	ansible-playbook -i $(DIR)/inventory $(DIR)/playbook.yml --limit ${PROFILE} --diff --ask-become-pass $(ARG) -t $(ROLE) --skip-tags=$(IGNORE)
 endif
 endif
 

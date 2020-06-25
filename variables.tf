@@ -3,7 +3,7 @@ variable "prefix" {
 }
 
 variable "instance-name" {
-  default = "kencancode"
+  default = "kzefram"
 }
 variable "project" {
   default = "kencancode-builder"

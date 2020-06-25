@@ -32,7 +32,9 @@ It is designed to be a generic **buildfiles** (as opposed to **[dotfiles](https:
     1. [Vagrant](#vagrant)
 5. **[Options](#options)**
     1. [Enable / Disable Management](#enable--disable-management)
-    2. [Package options](#package-options)
+    2. [Package options](#package-options
+    
+    
 6. **[Requirements](#requirements)**
     1. [Install system requirements](#install-system-requirements)
     2. [Sudo permissions](#sudo-permissions)

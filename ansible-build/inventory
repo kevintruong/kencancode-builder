@@ -47,6 +47,9 @@ cytopia-t470p ansible_connection=local
 
 #[john]
 # johns-machine ansible_connection=local
+
 [builder]
 kencancode ansible_connection=ssh
 
+gws-hostname ansible_connection=ssh
+belkin-builder-hostname ansible_connection=ssh
