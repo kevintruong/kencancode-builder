@@ -1,4 +1,4 @@
-=
+= README
 
 I found out that I always feel stress on bring up a cloud instance and setup development environment on the cloud.
 the first issue is about the processing on go to console cloud website then click and click to configure params for a cloud instance quite anoying me. and how about that I have many cloud instance which each instance for one project.
