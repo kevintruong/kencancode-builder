@@ -24,16 +24,30 @@ Another question that I will answer is why I choose Terraform for this work.
 
 == Ansible playbook for configure remote VM resource.
 
+//TODO
+
 == Getting start
 
 === Create simple VM instance in GCP
+
 ```bash
-sudo ./tf_builder.sh --config gws-builder \
+sudo ./tf_builder.sh --config <profile_name> \
                      --cmd apply \
                      -var="machine-type=n1-highcpu-8"
 ```
 
 === Deploy your Dev environment to the VM instance
 
+```bash
+make deploy-tools PROFILE=<profile_name>
+```
+
+=== Example
 
 
+```bash
+sudo ./tf_builder.sh --config kevin-openwrt \
+                     --cmd apply \
+                     -var="machine-type=n1-highcpu-8"
+make deploy-tools PROFILE=kevin-openwrt
+```
