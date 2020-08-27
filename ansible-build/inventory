@@ -53,3 +53,4 @@ kencancode ansible_connection=ssh
 
 gws-hostname ansible_connection=ssh
 belkin-builder-hostname ansible_connection=ssh
+gws-builder ansible_connection=ssh

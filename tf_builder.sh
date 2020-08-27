@@ -58,7 +58,7 @@ function run(){
     terraform ${tf_command} -var prefix=${tf_config} ${tf_args}
 
     if [[ "${tf_command}" = "apply" && $? = 0 ]]; then
-        tf_config_hostname="$tf_config-hostname"
+        tf_config_hostname="$tf_config"
         logmsg "terraform apply successful, let update /etc/hosts with $tf_config_hostname"
         if grep -q ${tf_config_hostname} $HOSTFILE; then
             logmsg "existed host. let replace by new one"

@@ -55,7 +55,7 @@ resource "google_compute_firewall" "default" {
 
 // A single Google Cloud Engine instance
 
-resource "google_compute_instance" "kencancode" {
+resource "google_compute_instance" "krefram" {
   name = local.service_name
   machine_type = var.machine-type
   zone = var.zone
@@ -101,5 +101,5 @@ resource "google_compute_instance" "kencancode" {
 }
 
 output "ip" {
-  value = google_compute_instance.kencancode.network_interface.0.access_config.0.nat_ip
+  value = google_compute_instance.krefram.network_interface.0.access_config.0.nat_ip
 }
