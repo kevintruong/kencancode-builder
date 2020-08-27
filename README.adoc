@@ -22,59 +22,18 @@ With good strategy, we can live with the free tier in the whole year.
 
 Another question that I will answer is why I choose Terraform for this work.
 
-=== Basic knowledge about terraform
-// TODO I will talk about terraform here and answer the question above
-
-=== Create GCP preemptible instance with terraform
-// TODO explain about GCP preemptible instance. Why we need to use the kind of instance in the work.
-
-[source]
-----
-# start VM
-terraform apply -var="vm-state=RUNNING"
-# stop VM
-terraform apply -var="vm-state=TERMINATED"
-----
-
-=== Destroy resource
-
-[source]
-----
-terraform destroy
-----
-
 == Ansible playbook for configure remote VM resource.
 
-=== Basic knowledge about ansible
-//TODO
+== Getting start
+
+=== Create simple VM instance in GCP
+```bash
+sudo ./tf_builder.sh --config gws-builder \
+                     --cmd apply \
+                     -var="machine-type=n1-highcpu-8"
+```
+
+=== Deploy your Dev environment to the VM instance
 
 
-=== Create custom profile from the sample
-//TODO guide for create ansible custom profile
-// for example: a profile for a specific project
 
-=== Configure your target with ansible playbook
-
-=== Ansible configure using profile
-
-==== Auto Deploy Jenkins Master
-
-[source]
-----
-echo `terraform output ip` > ansible-playbook/inventory
-----
-
-[source]
-----
-ansible-playbook -i ansible-practice/inventory -u ken ansible-practice/ansible-jenkin-master.yml
-----
-
-=== Bring up IT Infrastructure using ansible
-// TODO Advance topic while I want to use Ansible to configure IT-Infrastructure of my company.
-
-== Quick note
-
-[source,shell]
-----
-sed -i "/kencancode/c\\`terraform output ip` kencancode " /tmp/hosts
-----
