@@ -1,3 +1,4 @@
+//tag::readme[]
 = README
 
 I found out that I always feel stress on bring up a cloud instance and setup development environment on the cloud.
@@ -51,3 +52,5 @@ sudo ./tf_builder.sh --config kevin-openwrt \
                      -var="machine-type=n1-highcpu-8"
 make deploy-tools PROFILE=kevin-openwrt
 ```
+
+//end::readme[]
